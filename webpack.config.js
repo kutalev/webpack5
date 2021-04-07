@@ -12,8 +12,26 @@ module.exports = {
     mode,
     target,
     devtool: "source-map",
+
+    output: {
+        assetModuleFilename: "images/[hash][ext][query]",
+    },
     module: {
         rules: [
+            {
+                test: /\.(png|jpe?g|gif|svg)$/i,
+                type: "asset",
+
+                // type: "asset/inline" // конвертирует картинки в js
+                // type: "asset/resource" // кидает в папку все картинки
+                // type: "asset" // автоматически решает
+                // устанавлвивает значение размера для inline/resource
+                // parser: {
+                //     dataUrlCondition: {
+                //         maxSize: 30 * 1024
+                //     }
+                // }
+            },
             {
                 test: /\.(s[ac]|c)ss$/i, // sass, scss, css
                 use: [
